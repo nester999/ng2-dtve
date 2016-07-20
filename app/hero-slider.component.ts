@@ -1,22 +1,31 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 // Import the Image interface
 import {Image} from './image.interface';
+import { MoviesService } from './movies.service';
 
 @Component({
   selector: 'ed-hero-slider',
   styleUrls: ['app/hero-slider.component.css'],
   templateUrl: 'app/hero-slider.component.html',
+  providers: [ MoviesService ]
 })
-export class HeroSliderComponent { 
+export class HeroSliderComponent implements OnInit { 
   //images data to be bound to the template
-    public images = IMAGES;
-}
+    public images: Image[];
+    getData: any;
 
-//IMAGES array implementing Image interface
-var IMAGES: Image[] = [
-  { "title": "We are covered", "url": "http://www.placekitten.com/1200/400/" },
-  { "title": "Generation Gap", "url": "http://www.placekitten.com/1200/400/" },
-  { "title": "Potter Me", "url": "http://www.placekitten.com/1200/400/" },
-  { "title": "Pre-School Kids", "url": "http://www.placekitten.com/1200/400/" },
-  { "title": "Young Peter Cech", "url": "http://www.placekitten.com/1200/400/" } 
-];
+    constructor (private moviesService: MoviesService) {}
+
+    ngOnInit() {
+      this.getBackdropImages();
+    }
+
+    getBackdropImages() {
+      this.moviesService.getHeroImages() 
+        .subscribe(
+           data => this.images = data,
+           error => alert(error),
+           () => console.log('finished')
+        );
+    }
+}

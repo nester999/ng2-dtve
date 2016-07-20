@@ -10,28 +10,22 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var movies_service_1 = require('./movies.service');
-var HeroSliderComponent = (function () {
-    function HeroSliderComponent(moviesService) {
+var FooterComponent = (function () {
+    function FooterComponent(moviesService) {
         this.moviesService = moviesService;
     }
-    HeroSliderComponent.prototype.ngOnInit = function () {
-        this.getBackdropImages();
+    FooterComponent.prototype.ngOnInit = function () {
     };
-    HeroSliderComponent.prototype.getBackdropImages = function () {
-        var _this = this;
-        this.moviesService.getHeroImages()
-            .subscribe(function (data) { return _this.images = data; }, function (error) { return alert(error); }, function () { return console.log('finished'); });
-    };
-    HeroSliderComponent = __decorate([
+    FooterComponent = __decorate([
         core_1.Component({
-            selector: 'ed-hero-slider',
-            styleUrls: ['app/hero-slider.component.css'],
-            templateUrl: 'app/hero-slider.component.html',
+            selector: 'ed-footer',
+            styleUrls: ['app/footer.component.css'],
+            templateUrl: 'app/footer.component.html',
             providers: [movies_service_1.MoviesService]
         }), 
         __metadata('design:paramtypes', [movies_service_1.MoviesService])
-    ], HeroSliderComponent);
-    return HeroSliderComponent;
+    ], FooterComponent);
+    return FooterComponent;
 }());
-exports.HeroSliderComponent = HeroSliderComponent;
-//# sourceMappingURL=hero-slider.component.js.map
+exports.FooterComponent = FooterComponent;
+//# sourceMappingURL=footer.component.js.map

@@ -10,14 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var http_1 = require('@angular/http');
-require('rxjs/add/operator/toPromise');
+// import 'rxjs/add/operator/toPromise';
+require('rxjs/add/operator/map');
 var MoviesService = (function () {
     function MoviesService(http) {
         this.http = http;
         this.apiKey = '?api_key=ecda3228e70942921f2177da1ff9ba5d';
         this.imgPath = 'http://image.tmdb.org/t/p/';
         this.baseUrl = 'http://api.themoviedb.org/3/';
-        this.latestMoviesUrl = this.baseUrl + 'movie/latest/' + this.apiKey;
+        this.latestMoviesUrl = this.baseUrl + 'movie/latest' + this.apiKey;
+        // backdrops = baseUrl + 'movie' + '/' + id + '/images' + apiKey
         this.rottenTomatoApiKey = '&apikey=uxc2rsd95jap7csscrbrr38h';
         this.rottenTomatoBaseUrl = 'http://api.rottentomatoes.com/api/public/v1.0/';
         this.rottenTomatoPageLimit = '&page_limit=1&page=1';
@@ -32,12 +34,32 @@ var MoviesService = (function () {
     //       () => console.log('latest movies Complete')
     //     );
     // }
-    MoviesService.prototype.getLatestMovies = function () {
-        return this.http.get(this.latestMoviesUrl)
-            .toPromise()
-            .then(function (response) { return response.json().data; })
-            .catch(this.handleError);
+    MoviesService.prototype.getHeroImages = function () {
+        var _this = this;
+        // return this.http.get('http://api.themoviedb.org/3/movie/latest?api_key=ecda3228e70942921f2177da1ff9ba5d')
+        return this.http.get('http://api.themoviedb.org/3/movie/top_rated?api_key=ecda3228e70942921f2177da1ff9ba5d')
+            .map(function (response) {
+            console.log('response ', response.json());
+            var _results = response.json().results;
+            console.log('results ', _results);
+            var heroImages = [];
+            _results.forEach(function (movie) {
+                var curImage = {
+                    title: movie.title,
+                    url: _this.imgPath + 'w1280' + movie.backdrop_path
+                };
+                heroImages.push(curImage);
+            });
+            console.log('heroImages ', heroImages);
+            return heroImages;
+        });
     };
+    // getLatestMovies(): Promise<string[]> {
+    //   return this.http.get(this.latestMoviesUrl)
+    //              .toPromise()
+    //              .then(response => response.json().data)
+    //              .catch(this.handleError);
+    // }
     MoviesService.prototype.handleError = function (error) {
         console.error('An error occurred', error);
         return Promise.reject(error.message || error);

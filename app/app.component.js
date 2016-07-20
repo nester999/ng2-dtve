@@ -12,28 +12,25 @@ var core_1 = require('@angular/core');
 var nav_component_1 = require('./nav.component');
 var hero_slider_component_1 = require('./hero-slider.component');
 var movies_service_1 = require('./movies.service');
+var poster_component_1 = require('./poster.component');
+var footer_component_1 = require('./footer.component');
 var AppComponent = (function () {
-    function AppComponent(moviesService) {
-        this.moviesService = moviesService;
+    function AppComponent() {
     }
     AppComponent.prototype.ngOnInit = function () {
-        this.getLatestMovies();
-    };
-    AppComponent.prototype.getLatestMovies = function () {
-        var _this = this;
-        this.latestMovies = this.moviesService.getLatestMovies();
-        this.moviesService.getLatestMovies().then(function (latestMovies) { _this.latestMovies = latestMovies; });
     };
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <ed-nav></ed-nav>\n    <ed-hero-slider></ed-hero-slider>\n    <span>{{latestMovies}}</span>\n  ",
+            template: "\n    <div class=\"wrapper\">\n    <ed-nav></ed-nav>\n    <ed-hero-slider></ed-hero-slider>\n    <span>{{latestMovies}}</span>\n    <row>\n      <ed-poster></ed-poster>\n    </row>\n    </div>\n    <ed-footer></ed-footer>\n\n  ",
             providers: [movies_service_1.MoviesService],
             directives: [nav_component_1.NavComponent,
-                hero_slider_component_1.HeroSliderComponent
+                hero_slider_component_1.HeroSliderComponent,
+                poster_component_1.PosterComponent,
+                footer_component_1.FooterComponent
             ]
         }), 
-        __metadata('design:paramtypes', [movies_service_1.MoviesService])
+        __metadata('design:paramtypes', [])
     ], AppComponent);
     return AppComponent;
 }());
