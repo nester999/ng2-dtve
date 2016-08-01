@@ -46,7 +46,8 @@ var MoviesService = (function () {
             _results.forEach(function (movie) {
                 var curImage = {
                     title: movie.title,
-                    url: _this.imgPath + 'w1280' + movie.backdrop_path
+                    url: _this.imgPath + 'w1280' + movie.backdrop_path,
+                    isActive: false
                 };
                 heroImages.push(curImage);
             });

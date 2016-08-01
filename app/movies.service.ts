@@ -43,7 +43,8 @@ export class MoviesService {
         _results.forEach(movie => {
           var curImage: Image = {
             title: movie.title,
-            url: this.imgPath + 'w1280' + movie.backdrop_path
+            url: this.imgPath + 'w1280' + movie.backdrop_path,
+            isActive: false
           };
           heroImages.push(curImage);
         });

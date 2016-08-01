@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var router_1 = require('@angular/router');
 var NavComponent = (function () {
     function NavComponent() {
     }
@@ -16,7 +17,8 @@ var NavComponent = (function () {
         core_1.Component({
             selector: 'ed-nav',
             styleUrls: ['app/nav.component.css'],
-            templateUrl: 'app/nav.component.html'
+            templateUrl: 'app/nav.component.html',
+            directives: [router_1.ROUTER_DIRECTIVES]
         }), 
         __metadata('design:paramtypes', [])
     ], NavComponent);

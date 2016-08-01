@@ -1,65 +1,120 @@
 .carousel {
   overflow: hidden;
-  width: 100%;
   position: relative;
-  margin-bottom: 40px;
+  width: 100%;
+  min-height: 10%;
+  // margin-left: % // max-height: 500px;
+  position: relative;
+  background: #eee;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.6);
+  -webkit-transition: 0.5s all ease;
+  // cubic-bezier(0.49, 0, 0.71, 1.25);
+  -o-transition: 0.5s all ease;
+  // cubic-bezier(0.49, 0, 0.71, 1.25);
+  transition: 0.5s all ease;
 }
 
 .slides {
   list-style: none;
   margin: 0 auto;
+  // border: red dotted 3px;
   position: relative;
-  width: 300%;
+  display: inline-block;
+  height: 100%;
+  background: #333;
+  // max-height: 500px;
   /* Number of panes * 100% */
   overflow: hidden;
   /* Clear floats */
   /* Slide effect Animations*/
-  -moz-animation: carousel 40s infinite;
-  -webkit-animation: carousel 40s infinite;
-  animation: carousel 40s infinite;
+  -webkit-transition: 0.5s all ease;
+  // cubic-bezier(0.49, 0, 0.71, 1.25);
+  -o-transition: 0.5s all ease;
+  // cubic-bezier(0.49, 0, 0.71, 1.25);
+  transition: 0.5s all ease;
+  // cubic-bezier(0.49, 0, 0.71, 1.25);
+  white-space: nowrap;
+}
+
+.active-slide {
+  border: 3px white dotted;
 }
 
 ul {
   padding: 0;
 }
 
-.slides > li {
-  position: relative;
-  float: left;
-  width: 5%;
+.slide {
+  position: absolute;
+  display: inline-block;
+  height: 100%;
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
   /* 100 / number of panes */
+}
+
+.hero-play-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.5;
+  color: white;
+  font-size: 60px;
+  -webkit-transition: all 0.4s ease-in-out;
+  -o-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+}
+
+.hero-play-icon:hover {
+  opacity: 1;
 }
 
 .prev-chevron {
   float: left;
   position: absolute;
-  top: 40%;
   left: 0;
+  top: 50%;
+  text-align: middle;
+  height: 100%;
   color: #ccc;
+  opacity: 0.7;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .prev-chevron:hover {
   color: white;
+  opacity: 0.9;
 }
 
 .next-chevron {
   float: right;
   position: absolute;
-  top: 40%;
-  left: 99%;
+  padding: 0 0.3em;
+  height: 100%;
+  right: 0;
+  top: 50%;
+  margin: auto 1px;
+  vertical-align: middle;
   color: #ccc;
+  opacity: 0.7;
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
 }
 
 .next-chevron:hover {
   color: white;
+  opacity: 0.9;
 }
 
 .carousel img {
-  display: block;
+  display: inline-block;
   margin: 0;
   padding: 0;
-  width: 100%;
-  max-width: 100%;
+  height: 100%;
 }
 
 .carousel h2 {
@@ -74,6 +129,36 @@ ul {
   color: #fff;
   background-color: rgba(0, 0, 0, 0.75);
   text-transform: uppercase;
+}
+
+ul.slider-pagination {
+  margin: auto;
+  width: 60%;
+  padding: 10px;
+  text-align: center;
+  white-space: nowrap;
+}
+
+li.btn-pagination {
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  position: relative;
+  // margin: auto;
+  display: inline-block;
+  opacity: 0.6;
+  background: #333;
+  border: 2px #eee;
+  width: 10px;
+  height: 10px;
+  margin: 0 2px;
+  -webkit-transition: 0.4s all cubic-bezier(0.17, 0.67, 0.83, 0.67);
+  transition: 0.4s all cubic-bezier(0.17, 0.67, 0.83, 0.67);
+}
+
+.active-pagination {
+  background: #eee !important;
+  opacity: 0.8 !important;
+  bottom: 0.2vw;
 }
 
 @keyframes carousel {
