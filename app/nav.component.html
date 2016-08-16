@@ -7,7 +7,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" [routerLink]="['']">AT&T</a>
+      <a class="navbar-brand" [routerLink]="['']"><img src="http://vignette2.wikia.nocookie.net/logopedia/images/8/8f/AT%26T_Facebook_Profile_Picture_(2016-present).svg/revision/latest?cb=20160119190326"></a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
@@ -21,11 +21,10 @@
       <ul class="nav navbar-nav navbar-right">
         <i class="fa fa-search"></i>
         <input type="search" placeholder="Search">
-        <i class="fa fa-user"></i>
+        <a [routerLink]="['/login']"><i class="fa fa-user"></i></a>
       </ul>
     </div>
     <!--/.nav-collapse -->
   </div>
   <!--/.container-fluid -->
 </nav>
-<router-outlet></router-outlet>

@@ -14,10 +14,12 @@ var movies_service_1 = require('./movies.service');
 var HeroSliderComponent = (function () {
     function HeroSliderComponent(moviesService) {
         this.moviesService = moviesService;
-        this.curIndex = 0;
-        this.moveCounter = 0;
         this.visibleSlides = 5;
-        this.carouselHeight = 200;
+        this.curIndex = this.visibleSlides;
+        this.moveCounter = 0;
+        this.isInfinite = true;
+        this.currentlyLooping = false;
+        this.carouselHeight = 220;
         this.imageWidth = 1.777778 * this.carouselHeight; // 1280/720
     }
     HeroSliderComponent.prototype.ngOnInit = function () {
@@ -29,19 +31,36 @@ var HeroSliderComponent = (function () {
         var _this = this;
         this.images.forEach(function (image, i) {
             image.isActive = (_this.curIndex === i);
+            console.log('image[' + i + '].isActive ', image.isActive);
             if (image.isActive) {
                 console.log('active image ', i);
             }
         });
     };
+    HeroSliderComponent.prototype.resetCarousel = function () {
+        var _this = this;
+        setTimeout(function () {
+            // alert('in timeout');
+            console.log(_this);
+            _this.currentlyLooping = true;
+            _this.images[_this.curIndex].isActive = false;
+            // this.images[0].isActive = true;
+            _this.curIndex = _this.visibleSlides;
+            _this.moveCounter = 0;
+            _this.setActive();
+        }, 500);
+    };
+    HeroSliderComponent.prototype.switchTransition = function () {
+        return ((this.currentlyLooping ? '0' : '0.5') + 's all ease');
+    };
     HeroSliderComponent.prototype.getCarouselHeight = function () {
         return this.carouselHeight + 'px';
     };
     HeroSliderComponent.prototype.getSlidesWidth = function () {
-        return ((this.totalNumberOfSlides / this.visibleSlides) * 100) + '%';
+        return ((this.totalNumberOfSlides + 1 / this.visibleSlides) * 100) + '%';
     };
     HeroSliderComponent.prototype.getImageWidth = function () {
-        return this.imageWidth + '%';
+        return this.imageWidth + 'px';
     };
     HeroSliderComponent.prototype.moveCarousel = function () {
         return ((this.moveCounter * this.imageWidth)) + 'px';
@@ -60,8 +79,20 @@ var HeroSliderComponent = (function () {
         this.moviesService.getHeroImages()
             .subscribe(function (data) {
             _this.images = data;
-            _this.totalNumberOfSlides = data.length - 1;
-            _this.setActive();
+            if (_this.isInfinite) {
+                var length_1 = _this.images.length;
+                var prevVisibleImages = data.slice((length_1 - _this.visibleSlides), length_1);
+                var nextVisibleImages = data.slice(0, _this.visibleSlides);
+                console.log('prevVisibleImages ', prevVisibleImages);
+                _this.images = _this.images.concat(nextVisibleImages);
+                _this.images = prevVisibleImages.concat(_this.images);
+                console.log('this.images', _this.images);
+            }
+            _this.totalNumberOfSlides = _this.images.length - 1;
+            _this.images[0].isActive = true;
+            _this.images[_this.images.length].isActive = false;
+            console.log('this.curIndex ', _this.curIndex);
+            // this.setActive();
         }, function (error) { return alert(error); }, function () { return console.log('finished'); });
     };
     HeroSliderComponent.prototype.prev = function () {
@@ -81,34 +112,43 @@ var HeroSliderComponent = (function () {
         // this.images.push(this.images.shift());
         console.log(this.curIndex + ' of ' + this.totalNumberOfSlides);
     };
-    HeroSliderComponent.prototype.reorganizeSlides = function (direction) {
-        if (direction === -1) {
-            var lastImage = this.images.pop();
-            this.images.unshift(lastImage);
-        }
-        else if (direction === 1) {
-            this.images.push(this.images.shift());
-        }
-    };
+    // reorganizeSlides(direction) {
+    //   if(direction === -1) {
+    //     var lastImage = this.images.pop();
+    //     this.images.unshift(lastImage);
+    //   }
+    //   else if(direction === 1){
+    //     this.images.push(this.images.shift());
+    //   }
+    // }
     HeroSliderComponent.prototype.next = function () {
-        if (this.moveCounter >= (this.totalNumberOfSlides - this.visibleSlides) * -1) {
+        var _this = this;
+        this.currentlyLooping = false;
+        this.setActive();
+        if (this.moveCounter >= ((this.totalNumberOfSlides - this.visibleSlides) * -1)) {
             this.moveCounter--;
             this.curIndex++;
-            //infinityStuff
-            if (this.curIndex > this.totalNumberOfSlides) {
-                this.curIndex = 0;
-            }
         }
         else if (this.curIndex < this.totalNumberOfSlides) {
             this.curIndex++;
         }
-        this.setActive();
+        if (this.isInfinite) {
+            if (this.curIndex > (this.totalNumberOfSlides - this.visibleSlides)) {
+                // console.log('getting in 0 setting area?')
+                // this.moveCarousel().then(function() {
+                // })
+                this.resetCarousel();
+            }
+        }
+        setTimeout(function () {
+            _this.setActive();
+        }, 1000);
         // this.reorganizeSlides(1);
         // setTimeout(function() {
         // var lastImage = this.images.pop();
         // this.images.unshift(lastImage);
         // }, 1000);
-        console.log(this.curIndex + ' of ' + this.totalNumberOfSlides);
+        // console.log(this.curIndex + ' of ' + this.totalNumberOfSlides);
     };
     HeroSliderComponent = __decorate([
         core_1.Component({
@@ -123,6 +163,10 @@ var HeroSliderComponent = (function () {
                     core_1.state('secondPos', core_1.style({ transform: 'scaleX(1)' })),
                     core_1.transition('void => *', [
                         core_1.animate('200ms ease-in')
+                    ]),
+                    core_1.transition('* => void', [
+                        core_1.style({ transform: 'scaleX(0)' }),
+                        core_1.animate(100)
                     ]),
                 ])
             ]

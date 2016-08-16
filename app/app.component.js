@@ -14,8 +14,10 @@ var nav_component_1 = require('./nav.component');
 var hero_slider_component_1 = require('./hero-slider.component');
 var movies_service_1 = require('./movies.service');
 var poster_component_1 = require('./poster.component');
+var poster_slider_component_1 = require('./poster-slider.component');
 var footer_component_1 = require('./footer.component');
 var firebase_service_1 = require('./firebase.service');
+var login_component_1 = require('./login.component');
 var AppComponent = (function () {
     function AppComponent(firebaseService) {
         this.firebaseService = firebaseService;
@@ -35,14 +37,16 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'my-app',
-            template: "\n    <div class=\"wrapper\">\n    <ed-nav></ed-nav>\n    <ed-hero-slider></ed-hero-slider>\n    </div>\n    <form (ngSubmit)=\"onSubmit(f)\" #f=\"ngForm\">\n      <label for=\"first-name\">First Name</label>\n      <input type=\"text\" ngControl=\"firstName\">\n      <label for=\"last-name\">Last Name</label>\n      <input type=\"text\" ngControl=\"lastName\">\n      <button type=\"submit\">Submit</button>\n      <button (click)=\"onGetUser()\">Get User</button>\n    </form>\n    <div class=\"container\" id=\"response\">Response: {{response}}</div>\n    <div class=\"container\" id=\"getResponse\">Get Response: {{getResponse}}</div>\n    <ed-footer></ed-footer>\n  ",
+            templateUrl: 'app/app.component.html',
             providers: [movies_service_1.MoviesService, firebase_service_1.FirebaseService],
             directives: [nav_component_1.NavComponent,
                 hero_slider_component_1.HeroSliderComponent,
                 poster_component_1.PosterComponent,
+                poster_slider_component_1.PosterSliderComponent,
                 footer_component_1.FooterComponent,
                 router_1.ROUTER_DIRECTIVES
-            ]
+            ],
+            precompile: [login_component_1.LoginComponent]
         }), 
         __metadata('design:paramtypes', [firebase_service_1.FirebaseService])
     ], AppComponent);

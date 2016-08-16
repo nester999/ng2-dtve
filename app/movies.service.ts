@@ -40,12 +40,13 @@ export class MoviesService {
         var _results = response.json().results;
         console.log('results ', _results)
         var heroImages: Image[] = [];
-        _results.forEach(movie => {
+        _results.forEach((movie, i) => {
           var curImage: Image = {
             title: movie.title,
             url: this.imgPath + 'w1280' + movie.backdrop_path,
-            isActive: false
+            isActive: (i === 0)
           };
+
           heroImages.push(curImage);
         });
         console.log('heroImages ', heroImages);

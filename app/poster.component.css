@@ -1,20 +1,27 @@
-.wrap {
-  perspective: 1000px;
-  perspective-origin: 50% 10px;
+.cube-wrapper {
+  position: relative;
+  display: -webkit-inline-box;
 }
 
 .cube {
   position: relative;
+  display: inline-flex;
   width: 200px;
   transform-style: preserve-3d;
   margin: 0 auto;
   transform: rotateX(15deg);
   top: 0;
-  -webkit-transition: 0.25s all ease-in-out;
+  -webkit-transition: 0.15s all cubic-bezier(0.49, 0, 0.71, 1.25);
 }
 
 .cube:hover {
-  transform: rotateX(0deg) scale(1.1);
+  transform: rotateX(0deg) scale(1.1) translateY(-60px) translateZ(80px);
+}
+
+.cube:hover .shadow {
+  opacity: 0.2;
+  width: 80px !important;
+  filter: blur(10px);
 }
 
 .cube div {
@@ -22,7 +29,7 @@
   width: 200px;
   height: 200px;
   // background: #444;
-  opacity: 0.5;
+  opacity: 1;
 }
 
 .back {
@@ -64,6 +71,18 @@
 
 .front {
   transform: translateZ(100px);
-  background: cornflowerblue;
+  background: url("https://unsplash.it/100/200/?random");
+  background-repeat: no-repeat;
   width: 100px !important;
+}
+
+.shadow {
+  position: absolute;
+  transform: translate3d(0px, 169px, 149px) rotateX(80deg);
+  background: #000;
+  -webkit-border-radius: 50%;
+  width: 100px !important;
+  height: 30px !important;
+  // -webkit-filter: blur(2px);
+  opacity: 0.3;
 }

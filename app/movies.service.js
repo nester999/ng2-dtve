@@ -43,11 +43,11 @@ var MoviesService = (function () {
             var _results = response.json().results;
             console.log('results ', _results);
             var heroImages = [];
-            _results.forEach(function (movie) {
+            _results.forEach(function (movie, i) {
                 var curImage = {
                     title: movie.title,
                     url: _this.imgPath + 'w1280' + movie.backdrop_path,
-                    isActive: false
+                    isActive: (i === 0)
                 };
                 heroImages.push(curImage);
             });

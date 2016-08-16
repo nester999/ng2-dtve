@@ -7,36 +7,25 @@ import { NavComponent } from './nav.component';
 import { HeroSliderComponent } from './hero-slider.component';
 import { MoviesService } from './movies.service';
 import { PosterComponent } from './poster.component';
+import { PosterSliderComponent } from './poster-slider.component';
 import { FooterComponent } from './footer.component';
 import { FirebaseService } from './firebase.service';
+import { LoginComponent } from './login.component';
 
 
 @Component({
   selector: 'my-app',
-  template: `
-    <div class="wrapper">
-    <ed-nav></ed-nav>
-    <ed-hero-slider></ed-hero-slider>
-    </div>
-    <form (ngSubmit)="onSubmit(f)" #f="ngForm">
-      <label for="first-name">First Name</label>
-      <input type="text" ngControl="firstName">
-      <label for="last-name">Last Name</label>
-      <input type="text" ngControl="lastName">
-      <button type="submit">Submit</button>
-      <button (click)="onGetUser()">Get User</button>
-    </form>
-    <div class="container" id="response">Response: {{response}}</div>
-    <div class="container" id="getResponse">Get Response: {{getResponse}}</div>
-    <ed-footer></ed-footer>
-  `,
+  templateUrl: 'app/app.component.html',
   providers: [ MoviesService, FirebaseService ],
   directives: [ NavComponent,
     HeroSliderComponent,
     PosterComponent,
+    PosterSliderComponent,
     FooterComponent,
     ROUTER_DIRECTIVES
-  ]
+  ],
+  precompile: [LoginComponent]
+
 })
 export class AppComponent implements OnInit { 
   latestMovies: any;

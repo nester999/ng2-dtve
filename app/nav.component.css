@@ -1,3 +1,17 @@
+.navbar {
+  border: 0;
+  height: 49px;
+}
+
+.navbar-brand {
+  padding: 0;
+  margin-left: 10px;
+}
+
+img {
+  height: 100%;
+}
+
 .fa {
   color: #666;
 }

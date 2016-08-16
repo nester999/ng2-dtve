@@ -1,0 +1,62 @@
+.form-container {
+  margin: 0 auto;
+  max-width: 20rem;
+  width: 90%;
+  color: white;
+  height: 100%;
+  position: relative;
+}
+
+.forgot-password {
+  margin: 0 0 0.7em 0;
+}
+
+.input-group {
+  margin: 0.5em 0;
+}
+
+.form-container button {
+  margin-top: 0.3em;
+  margin-bottom: 0.2em;
+}
+
+.submit-button {
+  background: #555;
+}
+
+.submit-button:hover {
+  color: #fff;
+  background: #999;
+}
+
+.facebook-login {
+  background: darkblue;
+  color: #fff;
+}
+
+.facebook-login:hover {
+  background: #4466DF;
+}
+
+.twitter-login {
+  background: #0bf;
+  color: #fff;
+}
+
+.twitter-login:hover {
+  background: #6bd;
+}
+
+.google-login {
+  background: #DD4B39;
+  color: #fff;
+}
+
+.google-login:hover {
+  background: #EE4B39;
+}
+
+.logout:hover {
+  color: #fff;
+  background: #ddd;
+}

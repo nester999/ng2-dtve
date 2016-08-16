@@ -1,6 +1,5 @@
-<!-- <button (click)="onTestGet()" class="btn btn-default"> Test GET Request</button> -->
 <div class="carousel" [style.height]="getCarouselHeight()">
-  <ul class="slides" [style.marginLeft]="moveCarousel()" [style.width]="getSlidesWidth()">
+  <ul class="slides" [style.marginLeft]="moveCarousel()" [style.width]="getSlidesWidth()" [style.transition]="switchTransition()">
     <li *ngFor="let image of images; let i = index" class="slide" [style.left]="placeSlides(i)" [ngStyle]="{'width': imageWidth+'px', 'height': carouselHeight+'px'}" [ngClass]="{'active-slide': image.isActive}">
       <h2>{{image.title}}</h2>
       <img src="{{image.url}}" alt="{{image.title}}"/>
@@ -13,4 +12,7 @@
   <li class="btn-pagination" *ngFor="let image of images; let i = index" [ngClass]="{'active-pagination': image.isActive}">
   </li>
 </ul>
+<h2 class="text-center" style="color: white;">moveCounter: {{moveCounter}}</h2>
+<h2 class="text-center" style="color: white;">curIndex: {{curIndex}}</h2>
+<h2 class="text-center" style="color: white;">totalNumberOfSlides: {{totalNumberOfSlides}}</h2>
 
