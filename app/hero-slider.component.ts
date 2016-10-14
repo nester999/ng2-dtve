@@ -11,24 +11,31 @@ import {NgClass} from '@angular/common';
 // Import the Image interface
 import {Image} from './image.interface';
 import { MoviesService } from './movies.service';
+import { ModalComponent } from './modal.component';
 
 @Component({
   selector: 'ed-hero-slider',
   styleUrls: ['app/hero-slider.component.css'],
   templateUrl: 'app/hero-slider.component.html',
-  directives: [NgClass],
+  directives: [NgClass, ModalComponent],
   providers: [ MoviesService ],
   animations: [
-    trigger('myAnimation', [
-      state('void', style({transform: 'scaleX(.7)'})),
-      state('secondPos', style({transform: 'scaleX(1)'})),
+    trigger('myanim', [
+      state('void', style({opacity: 0, transform: 'translateY(10px)'})),
+      state('blah', style({opacity: 0})),
+      state('derp', style({opacity: 1})),
       transition('void => *', [
-        animate('200ms ease-in')
+        // style({opacity: 1}),
+        animate('1000ms cubic-bezier(0.49, 0, 0.71, 1.25)')
       ]),
-      transition('* => void', [
-        style({transform: 'scaleX(0)'}),
-        animate(100)
-      ]),
+      // transition('void => *', [
+      //         style({opacity: 1}),
+      //         animate('1000ms ease-in'))
+      //       ])
+      // transition('* => void', [
+      //   style({transform: 'scaleX(0)'}),
+      //   animate('8000ms')
+      // ]),
     ])
   ]
 })
@@ -36,14 +43,15 @@ export class HeroSliderComponent implements OnInit {
   //images data to be bound to the template
     public images: Image[];
     getData: any;
+    state: string = 'derp';
 
     container;
+    @Input() isInfinite = true;
     visibleSlides = 5;
-    curIndex = this.visibleSlides;
-    moveCounter = 0;
+    curIndex = this.isInfinite ? this.visibleSlides : 0;
+    moveCounter = this.isInfinite ? this.visibleSlides * -1 : 0;
     totalNumberOfSlides;
     isActivePagination;
-    isInfinite = true;
     currentlyLooping = false; 
     public rightPlaceholder: Image[];
     
@@ -62,32 +70,47 @@ export class HeroSliderComponent implements OnInit {
       // this.setActive();
     }
 
+    toggleState() {
+      this.state = this.state === 'derp' ? 'sup' : 'derp';
+    }
+
     setActive() {
       this.images.forEach((image, i) => {
         image.isActive = (this.curIndex === i);
-        console.log('image[' + i + '].isActive ', image.isActive)
+        // console.log('image[' + i + '].isActive ', image.isActive)
         if(image.isActive) {
           console.log('active image ', i);
         }
       })
     }
 
-    resetCarousel() { 
+    resetCarousel(direction: string) { 
 
       setTimeout(() => {
         // alert('in timeout');
-        console.log(this)
-        this.currentlyLooping = true;
-        this.images[this.curIndex].isActive = false;
-        // this.images[0].isActive = true;
-        this.curIndex = this.visibleSlides;
-        this.moveCounter = 0;
-        this.setActive()
+        if(direction === 'next') {
+          console.log(this)
+          this.currentlyLooping = true;
+          this.images[this.curIndex].isActive = false;
+          // this.images[0].isActive = true;
+          this.curIndex = this.visibleSlides;
+          this.moveCounter = -1 * (this.visibleSlides);
+          // this.setActive();
+        }
+        else if(direction === 'prev') {
+          console.log('in prev', this)
+          this.currentlyLooping = true;
+          this.images[this.curIndex].isActive = false;
+          // this.images[0].isActive = true;
+          this.curIndex = this.totalNumberOfSlides - this.visibleSlides;
+          this.moveCounter = -1 * (this.totalNumberOfSlides - this.visibleSlides);
+          // this.setActive();
+        }
       }, 500);
     }
 
     switchTransition() {
-      return ((this.currentlyLooping ? '0' : '0.5') + 's all ease');
+      return ((this.currentlyLooping ? '0s' : '0.3s all ease-in-out'));
     }
 
     getCarouselHeight() {
@@ -127,15 +150,20 @@ export class HeroSliderComponent implements OnInit {
                let length = this.images.length;
                let prevVisibleImages = data.slice((length - this.visibleSlides),length);
                let nextVisibleImages = data.slice(0,this.visibleSlides);
-               console.log('prevVisibleImages ', prevVisibleImages);
+               // console.log('prevVisibleImages ', prevVisibleImages);
                this.images = this.images.concat(nextVisibleImages);
                this.images = prevVisibleImages.concat(this.images);
-
+               this.curIndex = this.visibleSlides;
+               this.moveCounter = this.visibleSlides * -1;
                console.log('this.images', this.images);
              }
+             else {
+               this.curIndex = 0;
+               this.moveCounter = 0;
+             }
              this.totalNumberOfSlides = this.images.length-1;
-             this.images[0].isActive = true;
-             this.images[this.images.length].isActive = false;
+             // this.images[0].isActive = true;
+             // this.images[this.images.length].isActive = false;
              console.log('this.curIndex ', this.curIndex);
              // this.setActive();
            },
@@ -145,22 +173,37 @@ export class HeroSliderComponent implements OnInit {
     }
 
     prev() {
-      if(this.moveCounter < 0) {
-        this.moveCounter++;
-        if (this.curIndex <= 0) {
-          this.curIndex = this.totalNumberOfSlides;
-        } 
-        else {
+      this.currentlyLooping = false;
+      if(this.isInfinite) {
+        if(this.moveCounter < (this.visibleSlides)*-1 ) {
+          this.moveCounter++;
           this.curIndex--;
         }
-        // this.reorganizeSlides(-1);
+        else if(this.curIndex === (this.visibleSlides)) {
+          this.moveCounter++;
+          this.resetCarousel('prev');
+        }
       }
-      else if(this.curIndex > 0) {
-        this.curIndex--;
+      else {
+        if(this.moveCounter < 0) {
+          this.moveCounter++;
+          if (this.curIndex <= 0) {
+            this.curIndex = this.totalNumberOfSlides;
+          } 
+          else {
+            this.curIndex--;
+          }
+          // this.reorganizeSlides(-1);
+        }
+        else if(this.curIndex > 0) {
+          this.curIndex--;
+        }
+        // this.setActive();
+        // this.images.push(this.images.shift());
+        console.log(this.curIndex + ' of ' + this.totalNumberOfSlides);
+
       }
-      this.setActive();
-      // this.images.push(this.images.shift());
-      console.log(this.curIndex + ' of ' + this.totalNumberOfSlides);
+      
     }
 
     // reorganizeSlides(direction) {
@@ -175,7 +218,7 @@ export class HeroSliderComponent implements OnInit {
 
     next() {
       this.currentlyLooping = false;
-      this.setActive();
+      // this.setActive();
       if(this.moveCounter >= ((this.totalNumberOfSlides - this.visibleSlides) * -1)) {
         this.moveCounter--;
         this.curIndex++;
@@ -185,19 +228,20 @@ export class HeroSliderComponent implements OnInit {
         this.curIndex++;
       }
 
-      
+      // this.setActive();
+
       if(this.isInfinite) {
         if(this.curIndex > (this.totalNumberOfSlides - this.visibleSlides)) {
           
           // console.log('getting in 0 setting area?')
           // this.moveCarousel().then(function() {
           // })
-          this.resetCarousel();
+          this.resetCarousel('next');
         }
       }
-      setTimeout(() => {
-        this.setActive();
-      }, 1000);
+      // setTimeout(() => {
+        // this.setActive();
+      // }, 1000);
       
       // this.reorganizeSlides(1);
        

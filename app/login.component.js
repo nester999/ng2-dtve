@@ -20,6 +20,7 @@ var LoginComponent = (function () {
     LoginComponent.prototype.ngOnInit = function () {
         if (firebase.auth().currentUser != null) {
             this.emailField = firebase.auth().currentUser.email;
+            this.loggedIn = true;
         }
         // firebase.auth().getRedirectResult().then(function(result) {
         //   if (result.credential) {
@@ -104,7 +105,7 @@ var LoginComponent = (function () {
         var password = this.passwordField;
         alert('creating account for ' + email + ' and ' + password);
         firebase.auth().createUserWithEmailAndPassword(email, password).catch(function (error) {
-            alert('error will robinson!');
+            // alert('error will robinson! ' + error.message)
             // Handle Errors here.
             // var errorCode = error.code;
             // var errorMessage = error.message;
@@ -135,11 +136,13 @@ var LoginComponent = (function () {
             // [START signin]
             firebase.auth().signInWithPopup(provider);
             alert('signed in');
+            this.loggedIn = true;
         }
         else {
             // [START signout]
             alert('signing out');
             firebase.auth().signOut();
+            this.loggedIn = false;
         }
         // [START_EXCLUDE]
         // document.getElementById('quickstart-sign-in').disabled = true;
@@ -153,7 +156,9 @@ var LoginComponent = (function () {
             // var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
-            alert(result.user);
+            alert(JSON.stringify(result.user));
+            this.loggedIn = true;
+            alert('loggedin ' + this.loggedIn);
             // ...
         }).catch(function (error) {
             // Handle Errors here.
@@ -183,6 +188,7 @@ var LoginComponent = (function () {
             // var token = result.credential.accessToken;
             // The signed-in user info.
             var user = result.user;
+            this.loggedIn = true;
             // ...
         }).catch(function (error) {
             // Handle Errors here.
@@ -201,6 +207,7 @@ var LoginComponent = (function () {
             alert('signout successful');
             this.emailField = '';
             this.passwordField = '';
+            this.loggedIn = false;
         }, function (error) {
             alert('did not sign out');
             // An error happened.

@@ -15,12 +15,12 @@
       <label for="remember-me">Remember me </label>
       <input type="checkbox" id="remember-me"/>
     </div>
-    <button class="btn create-account center-block col-md-12" (click)="createAccount()">Create Account</button>    
-    <button class="btn submit-button center-block col-md-12" (click)="emailLogin()">Submit</button>    
-    <button class="btn facebook-login center-block col-md-12" (click)="facebookLogin()"><span class="icon-facebook"></span> Connect with Facebook</button>
-    <button class="btn twitter-login center-block col-md-12" (click)="whoUser()"><span class="icon-twitter"></span> Connect with Twitter</button>
+    <button *ngIf="!loggedIn" class="btn create-account center-block col-md-12" (click)="createAccount()">Create Account</button>    
+    <button *ngIf="!loggedIn" class="btn submit-button center-block col-md-12" (click)="emailLogin()">Submit</button>    
+    <button *ngIf="!loggedIn" class="btn facebook-login center-block col-md-12" (click)="facebookLogin()"><span class="icon-facebook"></span> Connect with Facebook</button>
+    <button *ngIf="!loggedIn" class="btn twitter-login center-block col-md-12" (click)="whoUser()"><span class="icon-twitter"></span> Connect with Twitter</button>
     
-    <button class="google-login btn center-block col-md-12" (click)="googleLogin()"><span class="icon-google-plus2" ></span> Connect with Google</button>
+    <button *ngIf="!loggedIn" class="google-login btn center-block col-md-12" (click)="googleLogin()"><span class="icon-google-plus2" ></span> Connect with Google</button>
     <button class="logout btn center-block col-md-12" (click)="logout()"><span class="icon-exit"></span> Logout</button>
   </form>
 

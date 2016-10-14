@@ -21,6 +21,7 @@ var login_component_1 = require('./login.component');
 var AppComponent = (function () {
     function AppComponent(firebaseService) {
         this.firebaseService = firebaseService;
+        this.infiniteHero = true;
     }
     AppComponent.prototype.onSubmit = function (form) {
         var _this = this;

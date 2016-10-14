@@ -1,6 +1,10 @@
 <div class="wrapper">
   <ed-nav></ed-nav>
-  <ed-hero-slider></ed-hero-slider>
+  <h2 style="color: white;">Infinite Slider</h2>
+  <ed-hero-slider [isInfinite]="true"></ed-hero-slider>
+  <h2 style="color: white;">Not-Infinite Slider</h2>
+  <ed-hero-slider [isInfinite]="false"></ed-hero-slider>
+
   <router-outlet></router-outlet>
 </div>
 

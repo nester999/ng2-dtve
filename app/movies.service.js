@@ -47,12 +47,33 @@ var MoviesService = (function () {
                 var curImage = {
                     title: movie.title,
                     url: _this.imgPath + 'w1280' + movie.backdrop_path,
-                    isActive: (i === 0)
+                    isActive: false
                 };
                 heroImages.push(curImage);
             });
             console.log('heroImages ', heroImages);
             return heroImages;
+        });
+    };
+    MoviesService.prototype.getPosterImages = function () {
+        var _this = this;
+        // return this.http.get('http://api.themoviedb.org/3/movie/latest?api_key=ecda3228e70942921f2177da1ff9ba5d')
+        return this.http.get('http://api.themoviedb.org/3/movie/top_rated?api_key=ecda3228e70942921f2177da1ff9ba5d')
+            .map(function (response) {
+            console.log('response ', response.json());
+            var _results = response.json().results;
+            console.log('results ', _results);
+            var posterImages = [];
+            _results.forEach(function (movie, i) {
+                var curImage = {
+                    title: movie.title,
+                    url: _this.imgPath + 'w185' + movie.poster_path,
+                    isActive: false
+                };
+                posterImages.push(curImage);
+            });
+            console.log('posterImages ', posterImages);
+            return posterImages;
         });
     };
     // getLatestMovies(): Promise<string[]> {

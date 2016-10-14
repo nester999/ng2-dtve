@@ -1,8 +1,8 @@
 <div class="carousel" [style.height]="getCarouselHeight()">
   <ul class="slides" [style.marginLeft]="moveCarousel()" [style.width]="getSlidesWidth()" [style.transition]="switchTransition()">
-    <li *ngFor="let image of images; let i = index" class="slide" [style.left]="placeSlides(i)" [ngStyle]="{'width': imageWidth+'px', 'height': carouselHeight+'px'}" [ngClass]="{'active-slide': image.isActive}">
+    <li *ngFor="let image of images; let i = index" class="slide" [style.left]="placeSlides(i)" [ngStyle]="{'width': imageWidth+'px', 'height': carouselHeight+'px'}" [ngClass]="{'active-slide': image.isActive}" #blarg (keyup)="0" data-toggle="modal" data-target="#edModal">
       <h2>{{image.title}}</h2>
-      <img src="{{image.url}}" alt="{{image.title}}"/>
+      <img src="{{image.url}}" @myanim="state" alt="{{image.title}}" />
     </li>
   </ul>
   <i class="fa fa-chevron-left prev-chevron fa-2x" aria-hidden="true" (click)="prev()"></i>
@@ -12,7 +12,10 @@
   <li class="btn-pagination" *ngFor="let image of images; let i = index" [ngClass]="{'active-pagination': image.isActive}">
   </li>
 </ul>
-<h2 class="text-center" style="color: white;">moveCounter: {{moveCounter}}</h2>
+
+<ed-modal [modalTitle]="blarg"></ed-modal>
+<!-- <button (click)="toggleState()">toggles</button> -->
+<!-- <h2 class="text-center" style="color: white;">moveCounter: {{moveCounter}}</h2>
 <h2 class="text-center" style="color: white;">curIndex: {{curIndex}}</h2>
 <h2 class="text-center" style="color: white;">totalNumberOfSlides: {{totalNumberOfSlides}}</h2>
-
+ -->

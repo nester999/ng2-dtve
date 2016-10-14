@@ -5,6 +5,7 @@ var hero_slider_component_1 = require('./hero-slider.component');
 var poster_component_1 = require('./poster.component');
 var poster_slider_component_1 = require('./poster-slider.component');
 var login_component_1 = require('./login.component');
+var modal_component_1 = require('./modal.component');
 var routes = [
     { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
     { path: 'dashboard', component: poster_slider_component_1.PosterSliderComponent },
@@ -14,6 +15,7 @@ var routes = [
     { path: 'sports', component: hero_slider_component_1.HeroSliderComponent },
     { path: 'music', component: movies_component_1.MoviesComponent },
     { path: 'login', component: login_component_1.LoginComponent },
+    { path: 'modal', component: modal_component_1.ModalComponent },
     { path: '**', component: poster_component_1.PosterComponent }
 ];
 exports.appRouterProviders = [

@@ -31,6 +31,7 @@ export class AppComponent implements OnInit {
   latestMovies: any;
   getResponse: string;
   response: string;
+  infiniteHero: boolean = true;
 
   constructor(private firebaseService: FirebaseService) {}
 

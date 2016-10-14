@@ -4,6 +4,7 @@ import { HeroSliderComponent } from './hero-slider.component';
 import { PosterComponent } from './poster.component';
 import { PosterSliderComponent } from './poster-slider.component';
 import { LoginComponent } from './login.component';
+import { ModalComponent } from './modal.component';
 
 const routes: RouterConfig = [
   { path: '', redirectTo: '/dashboard', pathMatch: 'full' },
@@ -14,6 +15,7 @@ const routes: RouterConfig = [
   { path: 'sports', component: HeroSliderComponent },
   { path: 'music', component: MoviesComponent },
   { path: 'login', component: LoginComponent },
+  { path: 'modal', component: ModalComponent },
   { path: '**', component: PosterComponent }
 ];
 

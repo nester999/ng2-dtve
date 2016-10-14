@@ -1,11 +1,11 @@
 .wrap {
-  perspective: 3000px;
-  perspective-origin: 50% 84px;
+  perspective: 2000px;
+  perspective-origin: 50% 114px;
 }
 
 .poster-carousel {
   overflow: hidden;
-  height: 37%;
+  height: 90%;
   box-shadow: inset 10px 0px 20px 5px rgba(0, 0, 0, 0.6);
   padding-left: 42px;
   padding-top: 30px;
@@ -34,6 +34,17 @@
   opacity: 0.9;
 }
 
+.slide {
+  position: relative;
+  cursor: pointer;
+  display: inline-block;
+  // box-shadow: inset 10px 0px 20px 5px rgba(0, 0, 0, 0.6);
+  height: 100%;
+  -webkit-transition: 0.5s all ease;
+  transition: 0.5s all ease;
+  /* 100 / number of panes */
+}
+
 .next-chevron {
   float: right;
   position: absolute;
@@ -49,6 +60,12 @@
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
+}
+
+.poster-carousel h2 {
+  color: white;
+  font-size: 14px;
+  position: relative;
 }
 
 .next-chevron:hover {

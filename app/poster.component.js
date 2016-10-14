@@ -11,10 +11,20 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var movies_service_1 = require('./movies.service');
 var PosterComponent = (function () {
-    //images data to be bound to the template
     function PosterComponent(moviesService) {
         this.moviesService = moviesService;
+        //images data to be bound to the template
+        this.posterImage = '';
+        this.posterTitle = '';
     }
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PosterComponent.prototype, "posterImage", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PosterComponent.prototype, "posterTitle", void 0);
     PosterComponent = __decorate([
         core_1.Component({
             selector: 'ed-poster',

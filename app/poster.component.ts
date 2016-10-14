@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 // Import the Image interface
 import {Image} from './image.interface';
 import { MoviesService } from './movies.service';
@@ -11,6 +11,8 @@ import { MoviesService } from './movies.service';
 })
 export class PosterComponent { 
   //images data to be bound to the template
+  @Input() posterImage: string = '';
+  @Input() posterTitle: string = '';
 
   constructor (private moviesService: MoviesService) {}
 
