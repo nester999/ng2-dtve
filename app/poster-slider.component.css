@@ -5,10 +5,10 @@
 
 .poster-carousel {
   overflow: hidden;
-  height: 90%;
+  height: 400px;
   box-shadow: inset 10px 0px 20px 5px rgba(0, 0, 0, 0.6);
   padding-left: 42px;
-  padding-top: 30px;
+  // padding-top: 30px;
   width: 200%;
   white-space: nowrap;
   background: #333;
@@ -20,7 +20,7 @@
   left: 0;
   top: 50%;
   text-align: middle;
-  z-index: 1000;
+  z-index: 9999999;
   height: 100%;
   color: #ccc;
   opacity: 0.7;
@@ -52,7 +52,7 @@
   height: 100%;
   right: 0;
   top: 50%;
-  z-index: 1000;
+  z-index: 999999999;
   margin: auto 1px;
   vertical-align: middle;
   color: #ccc;
