@@ -34,6 +34,12 @@
   opacity: 0.9;
 }
 
+.slides {
+  -webkit-transition: all 0.4s ease;
+  -o-transition: all 0.4s ease;
+  transition: all 0.4s ease;
+}
+
 .slide {
   position: relative;
   cursor: pointer;

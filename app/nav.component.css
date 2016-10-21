@@ -75,3 +75,119 @@ input:-moz-placeholder {
 input::-webkit-input-placeholder {
   color: #999;
 }
+
+.box {
+  background: #169FDC;
+  width: 60px;
+  height: 100%;
+}
+
+#att-logo {
+  position: relative;
+  width: 65%;
+  margin: 0 auto;
+  padding: 5px 0;
+  left: 14%;
+}
+
+.att-1 {
+  fill: transparent;
+  stroke-dasharray: 2000;
+  opacity: 0;
+  stroke-color: #fff;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.5s forwards;
+  -o-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.5s forwards;
+  -moz-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.5s forwards;
+  animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.5s forwards;
+}
+
+.att-2 {
+  fill: transparent;
+  stroke-dasharray: 2000;
+  opacity: 0;
+  stroke-color: #fff;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.75s forwards;
+  -o-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.75s forwards;
+  -moz-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.75s forwards;
+  animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.75s forwards;
+}
+
+.att-3 {
+  fill: transparent;
+  stroke-dasharray: 2000;
+  opacity: 0;
+  stroke-color: #fff;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.95s forwards;
+  -o-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.95s forwards;
+  -moz-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.95s forwards;
+  animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 0.95s forwards;
+}
+
+.att-4 {
+  fill: transparent;
+  stroke-dasharray: 2000;
+  opacity: 0;
+  stroke-color: #fff;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.15s forwards;
+  -o-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.15s forwards;
+  -moz-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.15s forwards;
+  animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.15s forwards;
+}
+
+.att-5 {
+  fill: transparent;
+  stroke-dasharray: 2000;
+  opacity: 0;
+  stroke-color: #fff;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.35s forwards;
+  -o-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.35s forwards;
+  -moz-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.35s forwards;
+  animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.35s forwards;
+}
+
+.att-6 {
+  fill: transparent;
+  stroke-dasharray: 2000;
+  opacity: 0;
+  stroke-color: #fff;
+  stroke-dashoffset: 0;
+  -webkit-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.5s forwards;
+  -o-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.5s forwards;
+  -moz-animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.5s forwards;
+  animation: dash 2s cubic-bezier(0.56, -0.07, 0.31, 0.99) 1.5s forwards;
+}
+
+@-webkit-keyframes dash {
+  0% {
+    stroke-dashoffset: 2000;
+    stroke-color: #fff;
+    stroke-width: 1px;
+  }
+  20% {
+    stroke-dashoffset: 2000;
+    fill: transparent;
+    stroke: #FFF;
+    opacity: 1;
+  }
+  50% {
+    stroke: #FFF;
+  }
+  70% {
+    stroke-dashoffset: 0;
+  }
+  72% {
+    fill: #169FDC;
+  }
+  80% {
+    stroke: #FFF;
+  }
+  100% {
+    fill: #FFF;
+    opacity: 1;
+  }
+}

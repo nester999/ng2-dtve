@@ -47,9 +47,6 @@ var PosterSliderComponent = (function () {
     PosterSliderComponent.prototype.getSlidesWidth = function () {
         return ((this.totalNumberOfSlides + 1 / this.visibleSlides) * 100) + '%';
     };
-    //   getImageWidth() {
-    //     return this.imageWidth + 'px';
-    //   }
     PosterSliderComponent.prototype.moveCarousel = function () {
         return ((this.moveCounter * this.imageWidth)) + 'px';
     };
@@ -78,17 +75,8 @@ var PosterSliderComponent = (function () {
     PosterSliderComponent.prototype.switchTransition = function () {
         return ((this.currentlyLooping ? '0s' : '0.3s all ease-in-out'));
     };
-    PosterSliderComponent.prototype.getCarouselHeight = function () {
-        return this.carouselHeight + 'px';
-    };
-    PosterSliderComponent.prototype.getSlidesWidth = function () {
-        return ((this.totalNumberOfSlides + 1 / this.visibleSlides) * 100) + '%';
-    };
     PosterSliderComponent.prototype.getImageWidth = function () {
         return this.imageWidth + 'px';
-    };
-    PosterSliderComponent.prototype.moveCarousel = function () {
-        return ((this.moveCounter * this.imageWidth)) + 'px';
     };
     PosterSliderComponent.prototype.counterMoveCarousel = function () {
         return (-1 * (this.moveCounter * this.imageWidth)) + 'px';
@@ -186,16 +174,7 @@ var PosterSliderComponent = (function () {
             styleUrls: ['app/poster-slider.component.css'],
             templateUrl: 'app/poster-slider.component.html',
             directives: [common_1.NgClass, poster_component_1.PosterComponent],
-            providers: [movies_service_1.MoviesService],
-            animations: [
-                core_1.trigger('myanim', [
-                    core_1.state('void', core_1.style({ opacity: 0, transform: 'translateY(10px)' })),
-                    core_1.state('blah', core_1.style({ opacity: 0 })),
-                    core_1.state('derp', core_1.style({ opacity: 1 })),
-                    core_1.transition('void => *', [
-                        // style({opacity: 1}),
-                        core_1.animate('1000ms cubic-bezier(0.49, 0, 0.71, 1.25)')
-                    ]),])]
+            providers: [movies_service_1.MoviesService]
         }), 
         __metadata('design:paramtypes', [movies_service_1.MoviesService])
     ], PosterSliderComponent);

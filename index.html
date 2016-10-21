@@ -14,17 +14,8 @@
 <!-- 
   <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script> -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> -->
-  <script src="https://www.gstatic.com/firebasejs/3.2.1/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    var config = {
-      apiKey: "AIzaSyAv3KpPEHvE8PL2h2lRKjZu2o38VrPTYno",
-      authDomain: "ng2-dtve.firebaseapp.com",
-      databaseURL: "https://ng2-dtve.firebaseio.com",
-      storageBucket: "ng2-dtve.appspot.com",
-    };
-    firebase.initializeApp(config);
-  </script>
+  <script src="https://www.gstatic.com/firebasejs/3.5.1/firebase.js"></script>
+
   <script src="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.js"></script>
   <link type="text/css" rel="stylesheet" href="https://www.gstatic.com/firebasejs/ui/live/0.4/firebase-ui-auth.css" />
       
@@ -133,7 +124,101 @@
     }
   </script>
 
-  <my-app>Loading...</my-app>
+  <my-app>
+  <style>
+    .spinner {
+      width: 100%;
+      height:  100%;
+      background: rgba(0,0,0,0.3);
+      animation:  fade-in 15s forwards;
+      position: fixed;
+
+      /* display: inline-block; */
+    }
+    @-webkit-keyframes fade-in {
+      0% {
+        opacity:  0;
+      }
+      10% {
+        opacity:  1;
+      }
+    }
+
+    .spinner:after, .spinner:before {
+      display: block;
+      opacity:  0;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .spinner-5 {
+      position:  absolute;
+      height: 100%;
+      width: 100%;
+      top:  50%;
+      left: 50%;
+      margin-left: -20px;
+    }
+
+    .spinner-5 span {
+      display: block;
+      height: 20px;
+      width: 20px;
+      background: #ddd;
+      border-radius: 50%;
+      position: absolute;
+      top: 0px;
+    }
+
+    .spinner-5 span:nth-child(1) {
+      left: -40px;
+      -webkit-animation: bounce 1s ease-in-out infinite;
+      animation: bounce 1s ease-in-out infinite;
+    }
+
+    .spinner-5 span:nth-child(2) {
+      -webkit-animation: bounce 1s ease-in-out 0.33s infinite;
+      animation: bounce 1s ease-in-out 0.33s infinite;
+    }
+
+    .spinner-5 span:nth-child(3) {
+      left: 40px;
+      -webkit-animation: bounce 1s ease-in-out 0.66s infinite;
+      animation: bounce 1s ease-in-out 0.66s infinite;
+    }
+
+    @-webkit-keyframes bounce {
+      0%, 75%, 100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+      }
+      25% {
+        -webkit-transform: translateY(-30px);
+        transform: translateY(-30px);
+      }
+    }
+
+
+    @keyframes bounce {
+      0%, 75%, 100% {
+        -webkit-transform: translateY(0px);
+        transform: translateY(0px);
+      }
+      25% {
+        -webkit-transform: translateY(-30px);
+        transform: translateY(-30px);
+      }
+    }
+  </style>
+    <div class="spinner">
+      <div class="spinner-5">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </my-app>
 </body>
 
 </html>

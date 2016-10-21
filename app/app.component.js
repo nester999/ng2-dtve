@@ -22,6 +22,19 @@ var AppComponent = (function () {
     function AppComponent(firebaseService) {
         this.firebaseService = firebaseService;
         this.infiniteHero = true;
+        // Initialize Firebase
+        var config = {
+            apiKey: "AIzaSyAv3KpPEHvE8PL2h2lRKjZu2o38VrPTYno",
+            authDomain: "ng2-dtve.firebaseapp.com",
+            databaseURL: "https://ng2-dtve.firebaseio.com",
+            storageBucket: "ng2-dtve.appspot.com",
+            messagingSenderId: "871792410831"
+        };
+        firebase.initializeApp(config);
+        var root = firebase.database().ref('messages/2');
+        root.on('value', function (snap) {
+            console.log('snap key ', snap.key, ' snap val', snap.val());
+        });
     }
     AppComponent.prototype.onSubmit = function (form) {
         var _this = this;
@@ -39,6 +52,8 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'my-app',
             templateUrl: 'app/app.component.html',
+            styleUrls: ['app/app.component.css'],
+            encapsulation: core_1.ViewEncapsulation.None,
             providers: [movies_service_1.MoviesService, firebase_service_1.FirebaseService],
             directives: [nav_component_1.NavComponent,
                 hero_slider_component_1.HeroSliderComponent,
@@ -47,7 +62,7 @@ var AppComponent = (function () {
                 footer_component_1.FooterComponent,
                 router_1.ROUTER_DIRECTIVES
             ],
-            precompile: [login_component_1.LoginComponent]
+            precompile: [login_component_1.LoginComponent, poster_slider_component_1.PosterSliderComponent]
         }), 
         __metadata('design:paramtypes', [firebase_service_1.FirebaseService])
     ], AppComponent);

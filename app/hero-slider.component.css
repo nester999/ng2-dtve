@@ -101,6 +101,7 @@ ul {
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  cursor: pointer;
 }
 
 .prev-chevron:hover {
@@ -122,6 +123,7 @@ ul {
   -webkit-transition: all 0.4s ease;
   -o-transition: all 0.4s ease;
   transition: all 0.4s ease;
+  cursor: pointer;
 }
 
 .next-chevron:hover {
