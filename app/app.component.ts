@@ -5,6 +5,7 @@ import { ROUTER_DIRECTIVES } from '@angular/router';
 import { ControlGroup } from '@angular/common';
 import { NavComponent } from './nav.component';
 import { HeroSliderComponent } from './hero-slider.component';
+import { ModalComponent } from './modal.component';
 import { MoviesService } from './movies.service';
 import { PosterComponent } from './poster.component';
 import { PosterSliderComponent } from './poster-slider.component';
@@ -26,7 +27,7 @@ import { LoginComponent } from './login.component';
     FooterComponent,
     ROUTER_DIRECTIVES
   ],
-  precompile: [LoginComponent, PosterSliderComponent]
+  precompile: [LoginComponent, PosterSliderComponent, ModalComponent]
 
 })
 export class AppComponent implements OnInit { 

@@ -12,6 +12,7 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var nav_component_1 = require('./nav.component');
 var hero_slider_component_1 = require('./hero-slider.component');
+var modal_component_1 = require('./modal.component');
 var movies_service_1 = require('./movies.service');
 var poster_component_1 = require('./poster.component');
 var poster_slider_component_1 = require('./poster-slider.component');
@@ -62,7 +63,7 @@ var AppComponent = (function () {
                 footer_component_1.FooterComponent,
                 router_1.ROUTER_DIRECTIVES
             ],
-            precompile: [login_component_1.LoginComponent, poster_slider_component_1.PosterSliderComponent]
+            precompile: [login_component_1.LoginComponent, poster_slider_component_1.PosterSliderComponent, modal_component_1.ModalComponent]
         }), 
         __metadata('design:paramtypes', [firebase_service_1.FirebaseService])
     ], AppComponent);
